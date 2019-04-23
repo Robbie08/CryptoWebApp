@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h1>Hello World!</h1>
-	{{ api }}
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to Crypto News Bank!</h1>
+  <p class="lead"> Our mandate is to inform, educate and connect the global community as the authoritative daily news provider dedicated to chronicling the space.</p>
+  <hr class="my-4">
+  <a class="btn btn-secondary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+
+<div class="container">
+	<div class="row">
+		{% for x in api.Data %}
+			<div class="col-sm">
+				<div class="card" style="width: 18rem;">
+				  <img src="{{x.imageurl}}" class="card-img-top" alt="{{x.source}}">
+				  <div class="card-body">
+				    <h5 class="card-title">{{x.title}}</h5>
+				    <p class="card-text">{{x.body}}.</p>
+				    <a href="{{x.url}}" class="btn btn-secondary">Read More...</a>
+				  </div>
+				</div>
+				<br/>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
 {% endblock %}
