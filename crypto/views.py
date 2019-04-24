@@ -6,9 +6,9 @@ def home(request):
 	API_KEY = "c372b5f5d7d17814dc34b99ccf63bc07a31334c3dea7a518ac04d663eb1956de" # this contains our API Key
 
 	# FETCH CRYPTO PRICE DATA
-	api_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC&tsyms=USD,EUR" +"&api_key=" +API_KEY)
-	api = json.loads(api_request.content) # read our json
+	price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,USDT,MIOTA,TRX&tsyms=USD" +"&api_key=" +API_KEY)
+	price = json.loads(price_request.content) # read our json
 	# FETCH CRYPTO NEWS
-	api_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN" +"&api_key=" +API_KEY)
-	api = json.loads(api_request.content) # read our json
-	return render(request,'home.html', {'api' : api})
+	news_request = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN" +"&api_key=" +API_KEY)
+	news = json.loads(news_request.content) # read our json
+	return render(request,'home.html', {'news' : news, 'price':price })
