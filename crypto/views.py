@@ -8,6 +8,7 @@ def home(request):
 	import requests
 	import json
 
+  
 	# FETCH CRYPTO PRICE DATA
 	price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,USDT,MIOTA,TRX&tsyms=USD" +"&api_key=" +API_KEY)
 	price = json.loads(price_request.content) # read our json
@@ -23,6 +24,7 @@ def prices(request):
 	if request.method == 'POST':
 		import requests
 		import json
+
 		quote = request.POST['quote'] # comes from base.html
 		quote = quote.upper()
 		# FETCH CRYPTO PRICE DATA

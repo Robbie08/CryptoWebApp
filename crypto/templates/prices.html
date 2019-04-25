@@ -2,17 +2,65 @@
 
 {% block content %}
 
+
+
+
+<br/><br/>
  {% for key,value in crypto.DISPLAY.items %}
-   <strong>Name: </strong>{{ key }} <br/>
-   <strong>Price: </strong>{{ value.USD.PRICE }} <br/>
-   <strong>Day High: </strong>{{ value.USD.HIGHDAY }} <br/>
-   <strong>Day Low: </strong>{{ value.USD.LOWDAY }} <br/>
-   <strong>Market Cap: </strong>{{ value.USD.MKTCAP }} <br/>
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col">
+			<div class="media">
+			   <img src="https://www.cryptocompare.com{{ value.USD.IMAGEURL}}
+				" alt="..." style="width: 15%; height: auto;"class="align-self-start mr-3">
+			  <div class="media-body">
+			     <h1>{{ key }}</h1>
+			     
+			  </div>
+			</div>
+	    </div>
+	    <div class="col">
+	      <h1> {{ value.USD.PRICE }}
+			<small style="color: blue;">({{ value.USD.CHANGEPCT24HOUR }}%)</small> </small> <br/>
+	      	<h4>Day High: {{ value.USD.HIGHDAY }} </h4>
+   			<h4>Day Low: {{ value.USD.LOWDAY }} </h4> <br/>
+	  	  </h1>
+	    </div>
+	    <div class="col">
+	      <button type="button" class="btn btn-primary btn-lg btn-block">Buy {{ key }}</button>
+		  <button type="button" class="btn btn-secondary btn-lg btn-block">Donate {{ key }}</button>
+	    </div>
+	  </div>
+	</div>
+
+
+	<table class="table">
+  <thead>
+    <tr>
+
+      <th scope="col">Market Cap</th>
+      <th scope="col">Volume (24h)</th>
+      <th scope="col">Volume: Last Hour</th>
+      <th scope="col">Supply</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">{{ value.USD.MKTCAP }}</td>
+      <td>{{ value.USD.TOTALVOLUME24HTO }}</td>
+      <td>{{ value.USD.VOLUMEHOURTO }}</td>
+      <td>{{ value.USD.SUPPLY }}</td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
 
  {% endfor %}
 
 <br/><br/>
 
-	{{ crypto }}
 
 {% endblock %}
