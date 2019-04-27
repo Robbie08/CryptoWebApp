@@ -7,8 +7,6 @@ API_KEY = "c372b5f5d7d17814dc34b99ccf63bc07a31334c3dea7a518ac04d663eb1956de" # t
 def home(request):
 	import requests
 	import json
-
-  
 	# FETCH CRYPTO PRICE DATA
 	price_request = requests.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,XRP,BCH,EOS,LTC,XLM,ADA,USDT,MIOTA,TRX&tsyms=USD" +"&api_key=" +API_KEY)
 	price = json.loads(price_request.content) # read our json
@@ -34,4 +32,6 @@ def prices(request):
 	
 	# IF SOMEONE IS JUST NAVIGATING TO THE PRICES URL
 	else:
-		return render(request, 'prices.html', {})
+
+		notfound = "Please enter a valid coin name into the search bar..."
+		return render(request, 'prices.html', {'notfound' : notfound})

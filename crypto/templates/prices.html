@@ -4,63 +4,77 @@
 
 
 
+{% if notfound %}
 
-<br/><br/>
- {% for key,value in crypto.DISPLAY.items %}
+	<h1 style="text-align: center;">
+	  Error #420: 
+	  <small class="text-muted">{{ notfound }}</small>
+	</h1>
 
-	<div class="container">
-	  <div class="row">
-	    <div class="col">
-			<div class="media">
-			   <img src="https://www.cryptocompare.com{{ value.USD.IMAGEURL}}
-				" alt="..." style="width: 15%; height: auto;"class="align-self-start mr-3">
-			  <div class="media-body">
-			     <h1>{{ key }}</h1>
-			     
-			  </div>
-			</div>
-	    </div>
-	    <div class="col">
-	      <h1> {{ value.USD.PRICE }}
-			<small style="color: blue;">({{ value.USD.CHANGEPCT24HOUR }}%)</small> </small> <br/>
-	      	<h4>Day High: {{ value.USD.HIGHDAY }} </h4>
-   			<h4>Day Low: {{ value.USD.LOWDAY }} </h4> <br/>
-	  	  </h1>
-	    </div>
-	    <div class="col">
-	      <button type="button" class="btn btn-primary btn-lg btn-block">Buy {{ key }}</button>
-		  <button type="button" class="btn btn-secondary btn-lg btn-block">Donate {{ key }}</button>
-	    </div>
-	  </div>
-	</div>
+{% else %}
+	{% if crypto.Response %}
+	    <h1 style="text-align: center;">
+	  		Error #200: 
+	  		<small class="text-muted">{{ quote }} does not exist yet. Please try another coin.</small>
+	    </h1>
+	{% endif %}
+	<br/><br/>
+	 {% for key,value in crypto.DISPLAY.items %}
 
-
-	<table class="table">
-  <thead>
-    <tr>
-
-      <th scope="col">Market Cap</th>
-      <th scope="col">Volume (24h)</th>
-      <th scope="col">Volume: Last Hour</th>
-      <th scope="col">Supply</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">{{ value.USD.MKTCAP }}</td>
-      <td>{{ value.USD.TOTALVOLUME24HTO }}</td>
-      <td>{{ value.USD.VOLUMEHOURTO }}</td>
-      <td>{{ value.USD.SUPPLY }}</td>
-    </tr>
-    </tr>
-  </tbody>
-</table>
+		<div class="container">
+		  <div class="row">
+		    <div class="col">
+				<div class="media">
+				   <img src="https://www.cryptocompare.com{{ value.USD.IMAGEURL}}
+					" alt="..." style="width: 15%; height: auto;"class="align-self-start mr-3">
+				  <div class="media-body">
+				     <h1>{{ key }}</h1>
+				     
+				  </div>
+				</div>
+		    </div>
+		    <div class="col">
+		      <h1> {{ value.USD.PRICE }}
+				<small style="color: blue;">({{ value.USD.CHANGEPCT24HOUR }}%)</small> </small> <br/>
+		      	<h4>Day High: {{ value.USD.HIGHDAY }} </h4>
+	   			<h4>Day Low: {{ value.USD.LOWDAY }} </h4> <br/>
+		  	  </h1>
+		    </div>
+		    <div class="col">
+		      <button type="button" class="btn btn-primary btn-lg btn-block">Buy {{ key }}</button>
+			  <button type="button" class="btn btn-secondary btn-lg btn-block">Donate {{ key }}</button>
+		    </div>
+		  </div>
+		</div>
 
 
- {% endfor %}
+		<table class="table">
+	  <thead>
+	    <tr>
 
-<br/><br/>
+	      <th scope="col">Market Cap</th>
+	      <th scope="col">Volume (24h)</th>
+	      <th scope="col">Volume: Last Hour</th>
+	      <th scope="col">Supply</th>
+	      
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td scope="row">{{ value.USD.MKTCAP }}</td>
+	      <td>{{ value.USD.TOTALVOLUME24HTO }}</td>
+	      <td>{{ value.USD.VOLUMEHOURTO }}</td>
+	      <td>{{ value.USD.SUPPLY }}</td>
+	    </tr>
+	    </tr>
+	  </tbody>
+	</table>
+
+
+	 {% endfor %}
+
+	<br/><br/>
+{% endif %}
 
 
 {% endblock %}
